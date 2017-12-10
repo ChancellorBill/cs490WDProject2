@@ -28,11 +28,11 @@ function get_cars($connection, $request_type) {
     $query = "SELECT *"
             . " FROM Car INNER JOIN CarSpecs"
             . " ON CarSpecs.ID = Car.CarSpecsID"
-            . " WHERE Status = '1' AND Make LIKE '" . $request_type . "' OR"
+            . " WHERE Status = '1' AND (Make LIKE '" . $request_type . "' OR"
             . " Model LIKE '" . $request_type . "' OR"
             . " YearMade LIKE '" . $request_type . "' OR"
             . " Size LIKE '" . $request_type . "' OR"
-            . " Color LIKE '" . $request_type . "' ";
+            . " Color LIKE '" . $request_type . "') ";
     
 
     $result = mysqli_query($connection, $query);
