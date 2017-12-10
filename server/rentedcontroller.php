@@ -15,7 +15,7 @@ if (isset($_POST['rented_cars'])) {
 function get_cars($connection,$request_type) {
     $final = array();
     $query = "SELECT Car.Picture, Car.Picture_type, Car.CarSpecsID, CarSpecs.Make, CarSpecs.Model, CarSpecs.YearMade, CarSpecs.Size, Rental.ID as rental_id, Rental.rentDate as rent_date"
-            . "FROM Car INNER JOIN CarSpecs ON Car.CarSpecsID = CarSpecs.ID INNER JOIN Rental ON Car.ID = Rental.carID";
+            . "FROM Car JOIN CarSpecs ON Car.CarSpecsID = CarSpecs.ID JOIN Rental ON Car.ID = Rental.carID WHERE Rental.CustomerID = '".$_SESSION["username"]."";
     
 
     $result = mysqli_query($connection, $query);
